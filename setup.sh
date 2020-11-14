@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Cache user credentials
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `setup.sh` has finished
+while true; do sleep 60; sudo -n true; kill -0 "$!" || exit; done 2>/dev/null &
+
+
 # Xcode Command Line Tools
 if test ! $(xcode-select --print-path); then
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
@@ -10,7 +17,7 @@ fi
 
 # Homebrew
 if ! hash brew 2>/dev/null; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+    echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" > /dev/null
 fi
 
 # Update Homebrew recipes
