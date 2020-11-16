@@ -14,6 +14,19 @@ sudo softwareupdate —i -a
 
 
 ###############################################################################
+# General                                                                     #
+###############################################################################
+
+echo "Configuring general preferences"
+
+# Disable wallpaper tinting in windows
+defaults write NSGlobalDomain AppleReduceDesktopTinting -bool true
+
+# Show scrollbars only when scrolling. Possible values: `WhenScrolling`, `Automatic` and `Always`
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+
+
+###############################################################################
 # Desktop & Screen Saver                                                      #
 ###############################################################################
 
@@ -27,7 +40,7 @@ defaults -currentHost write com.apple.screensaver idleTime 600
 
 
 ###############################################################################
-# Dock                                                                        #
+# Dock & Menu Bar                                                             #
 ###############################################################################
 
 echo "Configuring dock preferences"
@@ -122,6 +135,13 @@ echo "Configuring security and privacy preferences"
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 
+###############################################################################
+# Date & Time                                                                 #
+###############################################################################
+
+# Set the timezone; see `sudo systemsetup -listtimezones` for other values
+sudo systemsetup -settimezone "America/Sao_Paulo" > /dev/null
+
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -144,20 +164,9 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# Show scrollbars only when scrolling. Possible values: `WhenScrolling`, `Automatic` and `Always`
-defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
-
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-
-
-###############################################################################
-# Date & Time                                                                 #
-###############################################################################
-
-# Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "America/Sao_Paulo" > /dev/null
 
 
 ###############################################################################
@@ -168,7 +177,7 @@ sudo systemsetup -settimezone "America/Sao_Paulo" > /dev/null
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
-# Show icons for hard drives, servers, and removable media on the desktop
+# Hide icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
@@ -191,6 +200,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Use list view in all Finder windows by default. Codes for the other view modes: `icnv`, `clmv`, `glyv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
+
 ###############################################################################
 # Magnet
 ###############################################################################
@@ -198,6 +208,7 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Do not show dynamo add
 defaults write com.crowdcafe.windowmagnet.plist alreadyClickedDynamoItem -bool true
 defaults write com.crowdcafe.windowmagnet.plist didntWantToSeeDynamo -bool true
+
 
 ###############################################################################
 # Kill affected applications                                                  #

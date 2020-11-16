@@ -27,5 +27,5 @@ brew update
 brew tap homebrew/bundle
 brew bundle
 
-# Config OS
-source macos.sh
+# Preferences
+source preferences.sh
