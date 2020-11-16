@@ -16,6 +16,7 @@ brew 'php@7.2'
 brew 'composer'
 brew 'nginx'
 brew 'dnsmasq'
+brew 'nodejs'
 
 # Apps
 cask 'brave-browser'
