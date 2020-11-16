@@ -29,3 +29,9 @@ brew bundle
 
 # Preferences
 source preferences.sh
+
+
+# SSH Keys
+ln -s $HOME/Documents/.ssh $HOME/.ssh
+eval "$(ssh-agent -s)"
+ssh-add -K ~/.ssh/id_ed25519
